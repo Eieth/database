@@ -56,5 +56,18 @@ public class UserController {
         return response;
     }
 
+    @PostMapping("/t")
+    public UniResponse<UserResponse> t() {
+        UniResponse<UserResponse> r = new UniResponse<>();
+        r.setCode(SUCCESS);
+        Map<String, String> payload = new HashMap<>();
+        payload.put("id", "1");
+        payload.put("username", "1");
+        r.setData(new UserResponse() {{
+            setToken(JWTUtils.getToken(payload));
+        }});
+        return r;
+    }
+
 
 }

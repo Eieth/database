@@ -1,6 +1,7 @@
 package com.resfir.database.config;
 
 import com.resfir.database.interceptor.JWTInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -11,7 +12,13 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JWTInterceptor())
-                .addPathPatterns("/api/database")
-                .excludePathPatterns("/api/user");
+                .addPathPatterns("/api/database/**")
+                .excludePathPatterns("/api/user/**");
+    }
+
+    @Bean
+    public JWTInterceptor jwtInterceptor() {
+
+        return new JWTInterceptor();
     }
 }
