@@ -22,6 +22,11 @@ public class DatabaseController {
         this.databaseService = databaseService;
     }
 
+    @PostMapping("/t")
+    public int t() {
+        return 1;
+    }
+
     @PostMapping("/StationOverview")
     public UniResponse<List<StationOverview>> getStationOverview(){
         return databaseService.getStationOverview();
