@@ -2,10 +2,11 @@ package com.resfir.database.controller;
 
 
 import com.resfir.database.entity.*;
-import com.resfir.database.mapper.DatabaseMapper;
+import com.resfir.database.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,71 +14,60 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api/database")
 public class DatabaseController {
-    @Autowired
-    DatabaseMapper databaseMapper;
-    @PostMapping("/hello")
-    public String hello(){
-        return "hello";
+    private final DatabaseService databaseService;
+
+    public DatabaseController(DatabaseService databaseService) {
+        this.databaseService = databaseService;
     }
-    @PostMapping("/api/StationOverview")
-    public List<StationOverview> getStationOverview(){
-        return databaseMapper.getStationOverview();
+
+    @PostMapping("/StationOverview")
+    public UniResponse<List<StationOverview>> getStationOverview(){
+        return databaseService.getStationOverview();
     }
-    @PostMapping("/api/ElevationInfo")
-    public List<ElevationInfo> getElevationInfo(){
-        return databaseMapper.getElevationInfo();
+    @PostMapping("/ElevationInfo")
+    public UniResponse<List<ElevationInfo>> getElevationInfo(){
+        return databaseService.getElevationInfo();
     }
-    @PostMapping("/api/StationGeographicalLocation")
-    public List<StationGeographicalLocation> getStationGeographicalLocation(){
-        return databaseMapper.getStationGeographicalLocation();
+    @PostMapping("/StationGeographicalLocation")
+    public UniResponse<List<StationGeographicalLocation>> getStationGeographicalLocation(){
+        return databaseService.getStationGeographicalLocation();
     }
-    @PostMapping("/api/StationAddress")
-    public List<StationAddress> getStationAddress(){
-        return databaseMapper.getStationAddress();
+    @PostMapping("/StationAddress")
+    public UniResponse<List<StationAddress>> getStationAddress(){
+        return databaseService.getStationAddress();
     }
-    @PostMapping("/api/StationBasicInfo")
-    public List<StationBasicInfo> getStationBasicInfo(){
-        return databaseMapper.getStationBasicInfo();
+    @PostMapping("/StationBasicInfo")
+    public UniResponse<List<StationBasicInfo>> getStationBasicInfo(){
+        return databaseService.getStationBasicInfo();
     }
-    @PostMapping("/api/HydrologicalStationCharacteristicValues")
-    public List<HydrologicalStationCharacteristicValues> getHydrologicalStationCharacteristicValues(){
-        return databaseMapper.getHydrologicalStationCharacteristicValues();
+    @PostMapping("/HydrologicalStationCharacteristicValues")
+    public UniResponse<List<HydrologicalStationCharacteristicValues>> getHydrologicalStationCharacteristicValues(){
+        return databaseService.getHydrologicalStationCharacteristicValues();
     }
-    @PostMapping("/api/WaterLevelStationCharacteristicValues")
-    public List<WaterLevelStationCharacteristicValues> getWaterLevelStationCharacteristicValues(){
-        return databaseMapper.getWaterLevelStationCharacteristicValues();
+    @PostMapping("/WaterLevelStationCharacteristicValues")
+    public UniResponse<List<WaterLevelStationCharacteristicValues>> getWaterLevelStationCharacteristicValues(){
+        return databaseService.getWaterLevelStationCharacteristicValues();
     }
-    @PostMapping("/api/RainfallStationCharacteristicValues")
-    public List<RainfallStationCharacteristicValues> getRainfallStationCharacteristicValues(){
-        return databaseMapper.getRainfallStationCharacteristicValues();
+    @PostMapping("/RainfallStationCharacteristicValues")
+    public UniResponse<List<RainfallStationCharacteristicValues>> getRainfallStationCharacteristicValues(){
+        return databaseService.getRainfallStationCharacteristicValues();
     }
-    @PostMapping("/api/EvaporationStationCharacteristicValues")
-    public List<EvaporationStationCharacteristicValues> getEvaporationStationCharacteristicValues() {
-        return databaseMapper.getEvaporationStationCharacteristicValues();
+    @PostMapping("/EvaporationStationCharacteristicValues")
+    public UniResponse<List<EvaporationStationCharacteristicValues>> getEvaporationStationCharacteristicValues() {
+        return databaseService.getEvaporationStationCharacteristicValues();
     }
-    @PostMapping("/api/insertStationOverview")
-    public int insertStationOverview(Map<String, Object> map) {
-        int stationCode = (int)map.get("stationCode");
-        String stationName=(String)map.get("stationName");
-        String stationType=(String)map.get("stationType");
-        return databaseMapper.insertIntoStationOverview(stationCode,stationName,stationType);
+    @PostMapping("/insertStationOverview")
+    public UniResponse<Integer> insertStationOverview(Map<String, Object> map) {
+        return databaseService.insertStationOverview(map);
     }
-    @PostMapping("/api/insertStationGeographicalLocation")
-    public int insertStationGeographicalLocation(Map<String, Object> map){
-        int i = insertStationOverview(map);
-        int stationCode = (int)map.get("stationCode");
-        String stationType=(String)map.get("stationType");
-        float longitude = (float)map.get("longitude");
-        float latitude= (float)map.get("latitude");
-        if (i > 0) return databaseMapper.updateStationGeographicalLocation(stationCode,stationType,longitude,latitude);
-        return 0;
+    @PostMapping("/insertStationGeographicalLocation")
+    public UniResponse<Integer> insertStationGeographicalLocation(Map<String, Object> map){
+        return databaseService.insertStationGeographicalLocation(map);
     }
-    @PostMapping("/api/deleteStationOverview")
-    public int deleteStationOverview(Map<String, Object> map) {
-        int stationCode = (int)map.get("stationCode");
-        String stationName=(String)map.get("stationName");
-        String stationType=(String)map.get("stationType");
-        return databaseMapper.deleteStationOverview(stationCode, stationName, stationType);
+    @PostMapping("/deleteStationOverview")
+    public UniResponse<Integer> deleteStationOverview(Map<String, Object> map) {
+        return databaseService.deleteStationOverview(map);
     }
 }
