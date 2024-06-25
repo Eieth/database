@@ -1,11 +1,14 @@
 package com.resfir.database.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 @Data
 public class RainfallStations {
-    private String stationName;
+    @TableId(type = IdType.AUTO)
     private int stationCode;
+    private String stationName;
     private String watershedDistrict;
     private String drainageSystem;
     private float vesselHeight;
