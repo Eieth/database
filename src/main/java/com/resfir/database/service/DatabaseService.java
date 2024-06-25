@@ -3,31 +3,21 @@ package com.resfir.database.service;
 import com.resfir.database.entity.*;
 
 import java.util.List;
-import java.util.Map;
 
 public interface DatabaseService {
+    UniResponse<List<EvaporationStation>> getEvaporationStation();
 
-    UniResponse<List<StationOverview>> getStationOverview();
+    UniResponse<List<HistoricalChanges>> getHistoricalChanges();
 
-    UniResponse<List<ElevationInfo>> getElevationInfo();
+    UniResponse<List<HydrologicalStations>> getHydrologicalStations();
 
-    UniResponse<List<StationGeographicalLocation>> getStationGeographicalLocation();
+    UniResponse<List<RainfallStations>> getRainfallStations();
 
-    UniResponse<List<StationAddress>> getStationAddress();
+    UniResponse<List<SoilMoistureStation>> getSoilMoistureStation();
 
     UniResponse<List<StationBasicInfo>> getStationBasicInfo();
 
-    UniResponse<List<HydrologicalStationCharacteristicValues>> getHydrologicalStationCharacteristicValues();
+    UniResponse<List<WaterLevelStations>> getWaterLevelStations();
 
-    UniResponse<List<WaterLevelStationCharacteristicValues>> getWaterLevelStationCharacteristicValues();
-
-    UniResponse<List<RainfallStationCharacteristicValues>> getRainfallStationCharacteristicValues();
-
-    UniResponse<List<EvaporationStationCharacteristicValues>> getEvaporationStationCharacteristicValues() ;
-
-    UniResponse<Integer> insertStationOverview(Map<String, Object> map) ;
-
-    UniResponse<Integer> insertStationGeographicalLocation(Map<String, Object> map);
-
-    UniResponse<Integer> deleteStationOverview(Map<String, Object> map);
+    UniResponse<List<WaterQualityStations>> getWaterQualityStations();
 }

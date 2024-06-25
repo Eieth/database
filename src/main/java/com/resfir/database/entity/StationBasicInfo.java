@@ -3,7 +3,7 @@ package com.resfir.database.entity;
 import lombok.Data;
 
 @Data
-public class BasicInformationOfStations {
+public class StationBasicInfo {
     private String stationName;
     private int stationCode;
     private int stationFeatureCode;

@@ -1,6 +1,5 @@
 package com.resfir.database.service.Impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.resfir.database.entity.*;
 import com.resfir.database.mapper.*;
 import com.resfir.database.service.DatabaseService;
@@ -8,50 +7,36 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-import java.util.Map;
 
 import static com.resfir.database.entity.DefaultStatus.FAILURE;
 import static com.resfir.database.entity.DefaultStatus.SUCCESS;
 @Service
 public class DatabaseImpl implements DatabaseService {
-
-    private final ElevationInfoMapper elevationInfoMapper;
-    private final EvaporationStationCharacteristicValuesMapper evaporationStationCharacteristicValuesMapper;
-    private final HydrologicalStationCharacteristicValuesMapper hydrologicalStationCharacteristicValuesMapper;
-    private final RainfallStationCharacteristicValuesMapper rainfallStationCharacteristicValuesMapper;
-    private final StationAddressMapper stationAddressMapper;
+    
+    private final EvaporationStationMapper evaporationStationMapper;
+    private final HistoricalChangesMapper historicalChangesMapper;
+    private final HydrologicalStationsMapper hydrologicalStationsMapper;
+    private final RainfallStationsMapper rainfallStationsMapper;
+    private final SoilMoistureStationMapper soilMoistureStationMapper;
     private final StationBasicInfoMapper stationBasicInfoMapper;
-    private final StationGeographicalLocationMapper stationGeographicalLocationMapper;
-    private final StationOverviewMapper stationOverviewMapper;
-    private final WaterLevelStationCharacteristicValuesMapper waterLevelStationCharacteristicValuesMapper;
+    private final WaterLevelStationsMapper waterLevelStationsMapper;
+    private final WaterQualityStationsMapper waterQualityStationsMapper;
 
-    public DatabaseImpl(ElevationInfoMapper elevationInfoMapper, EvaporationStationCharacteristicValuesMapper evaporationStationCharacteristicValuesMapper, HydrologicalStationCharacteristicValuesMapper hydrologicalStationCharacteristicValuesMapper, RainfallStationCharacteristicValuesMapper rainfallStationCharacteristicValuesMapper, StationAddressMapper stationAddressMapper, StationBasicInfoMapper stationBasicInfoMapper, StationGeographicalLocationMapper stationGeographicalLocationMapper, StationOverviewMapper stationOverviewMapper, WaterLevelStationCharacteristicValuesMapper waterLevelStationCharacteristicValuesMapper) {
-        this.elevationInfoMapper = elevationInfoMapper;
-        this.evaporationStationCharacteristicValuesMapper = evaporationStationCharacteristicValuesMapper;
-        this.hydrologicalStationCharacteristicValuesMapper = hydrologicalStationCharacteristicValuesMapper;
-        this.rainfallStationCharacteristicValuesMapper = rainfallStationCharacteristicValuesMapper;
-        this.stationAddressMapper = stationAddressMapper;
+    public DatabaseImpl(EvaporationStationMapper evaporationStationMapper, HistoricalChangesMapper historicalChangesMapper, HydrologicalStationsMapper hydrologicalStationsMapper, RainfallStationsMapper rainfallStationsMapper, SoilMoistureStationMapper soilMoistureStationMapper, StationBasicInfoMapper stationBasicInfoMapper, WaterLevelStationsMapper waterLevelStationsMapper, WaterQualityStationsMapper waterQualityStationsMapper) {
+        this.evaporationStationMapper = evaporationStationMapper;
+        this.historicalChangesMapper = historicalChangesMapper;
+        this.hydrologicalStationsMapper = hydrologicalStationsMapper;
+        this.rainfallStationsMapper = rainfallStationsMapper;
+        this.soilMoistureStationMapper = soilMoistureStationMapper;
         this.stationBasicInfoMapper = stationBasicInfoMapper;
-        this.stationGeographicalLocationMapper = stationGeographicalLocationMapper;
-        this.stationOverviewMapper = stationOverviewMapper;
-        this.waterLevelStationCharacteristicValuesMapper = waterLevelStationCharacteristicValuesMapper;
+        this.waterLevelStationsMapper = waterLevelStationsMapper;
+        this.waterQualityStationsMapper = waterQualityStationsMapper;
     }
 
-    public UniResponse<List<StationOverview>> getStationOverview(){
-        UniResponse<List<StationOverview>> response = new UniResponse<>();
-        List<StationOverview> data = stationOverviewMapper.selectList(null);
-        if (data == null) {
-            response.setCode(FAILURE);
-        } else {
-            response.setCode(SUCCESS);
-            response.setData(data);
-        }
-        return response;
-    }
 
-    public UniResponse<List<ElevationInfo>> getElevationInfo(){
-        UniResponse<List<ElevationInfo>> response = new UniResponse<>();
-        List<ElevationInfo> data = elevationInfoMapper.selectList(null);
+    public UniResponse<List<EvaporationStation>> getEvaporationStation(){
+        UniResponse<List<EvaporationStation>> response = new UniResponse<>();
+        List<EvaporationStation> data = evaporationStationMapper.selectList(null);
         if (data == null) {
             response.setCode(FAILURE);
         } else {
@@ -62,9 +47,9 @@ public class DatabaseImpl implements DatabaseService {
     }
 
 
-    public UniResponse<List<StationGeographicalLocation>> getStationGeographicalLocation(){
-        UniResponse<List<StationGeographicalLocation>> response = new UniResponse<>();
-        List<StationGeographicalLocation> data = stationGeographicalLocationMapper.selectList(null);
+    public UniResponse<List<HistoricalChanges>> getHistoricalChanges(){
+        UniResponse<List<HistoricalChanges>> response = new UniResponse<>();
+        List<HistoricalChanges> data = historicalChangesMapper.selectList(null);
         if (data == null) {
             response.setCode(FAILURE);
         } else {
@@ -74,9 +59,33 @@ public class DatabaseImpl implements DatabaseService {
         return response;
     }
 
-    public UniResponse<List<StationAddress>> getStationAddress(){
-        UniResponse<List<StationAddress>> response = new UniResponse<>();
-        List<StationAddress> data = stationAddressMapper.selectList(null);
+    public UniResponse<List<HydrologicalStations>> getHydrologicalStations(){
+        UniResponse<List<HydrologicalStations>> response = new UniResponse<>();
+        List<HydrologicalStations> data = hydrologicalStationsMapper.selectList(null);
+        if (data == null) {
+            response.setCode(FAILURE);
+        } else {
+            response.setCode(SUCCESS);
+            response.setData(data);
+        }
+        return response;
+    }
+
+    public UniResponse<List<RainfallStations>> getRainfallStations(){
+        UniResponse<List<RainfallStations>> response = new UniResponse<>();
+        List<RainfallStations> data =  rainfallStationsMapper.selectList(null);
+        if (data == null) {
+            response.setCode(FAILURE);
+        } else {
+            response.setCode(SUCCESS);
+            response.setData(data);
+        }
+        return response;
+    }
+
+    public UniResponse<List<SoilMoistureStation>> getSoilMoistureStation(){
+        UniResponse<List<SoilMoistureStation>> response = new UniResponse<>();
+        List<SoilMoistureStation> data = soilMoistureStationMapper.selectList(null);
         if (data == null) {
             response.setCode(FAILURE);
         } else {
@@ -98,10 +107,9 @@ public class DatabaseImpl implements DatabaseService {
         return response;
     }
 
-
-    public UniResponse<List<HydrologicalStationCharacteristicValues>> getHydrologicalStationCharacteristicValues(){
-        UniResponse<List<HydrologicalStationCharacteristicValues>> response = new UniResponse<>();
-        List<HydrologicalStationCharacteristicValues> data =  hydrologicalStationCharacteristicValuesMapper.selectList(null);
+    public UniResponse<List<WaterLevelStations>> getWaterLevelStations(){
+        UniResponse<List<WaterLevelStations>> response = new UniResponse<>();
+        List<WaterLevelStations> data = waterLevelStationsMapper.selectList(null);
         if (data == null) {
             response.setCode(FAILURE);
         } else {
@@ -111,100 +119,15 @@ public class DatabaseImpl implements DatabaseService {
         return response;
     }
 
-    public UniResponse<List<WaterLevelStationCharacteristicValues>> getWaterLevelStationCharacteristicValues(){
-        UniResponse<List<WaterLevelStationCharacteristicValues>> response = new UniResponse<>();
-        List<WaterLevelStationCharacteristicValues> data = waterLevelStationCharacteristicValuesMapper.selectList(null);
+    public UniResponse<List<WaterQualityStations>> getWaterQualityStations() {
+        UniResponse<List<WaterQualityStations>> response = new UniResponse<>();
+        List<WaterQualityStations> data = waterQualityStationsMapper.selectList(null);
         if (data == null) {
             response.setCode(FAILURE);
         } else {
             response.setCode(SUCCESS);
             response.setData(data);
         }
-        return response;
-    }
-
-    public UniResponse<List<RainfallStationCharacteristicValues>> getRainfallStationCharacteristicValues(){
-        UniResponse<List<RainfallStationCharacteristicValues>> response = new UniResponse<>();
-        List<RainfallStationCharacteristicValues> data = rainfallStationCharacteristicValuesMapper.selectList(null);
-        if (data == null) {
-            response.setCode(FAILURE);
-        } else {
-            response.setCode(SUCCESS);
-            response.setData(data);
-        }
-        return response;
-    }
-
-    public UniResponse<List<EvaporationStationCharacteristicValues>> getEvaporationStationCharacteristicValues() {
-        UniResponse<List<EvaporationStationCharacteristicValues>> response = new UniResponse<>();
-        List<EvaporationStationCharacteristicValues> data = evaporationStationCharacteristicValuesMapper.selectList(null);
-        if (data == null) {
-            response.setCode(FAILURE);
-        } else {
-            response.setCode(SUCCESS);
-            response.setData(data);
-        }
-        return response;
-    }
-
-    public UniResponse<Integer> insertStationOverview(Map<String, Object> map) {
-        UniResponse<Integer> response = new UniResponse<>();
-        int stationCode = (int)map.get("stationCode");
-        String stationName=(String)map.get("stationName");
-        String stationType=(String)map.get("stationType");
-        try {
-            stationOverviewMapper.insert(new StationOverview(stationCode,stationName,stationType));
-        } catch (Exception e) {
-            response.setCode(FAILURE);
-            response.setMessage(e.getMessage());
-            return response;
-        }
-
-        response.setCode(SUCCESS);
-        return response;
-    }
-
-    public UniResponse<Integer> insertStationGeographicalLocation(Map<String, Object> map){
-        UniResponse<Integer> response = new UniResponse<>();
-        if (insertStationOverview(map).getCode().equals(FAILURE)) {
-            response.setCode(FAILURE);
-            return response;
-        }
-        int stationCode = (int)map.get("stationCode");
-        String stationType=(String)map.get("stationType");
-        float longitude = (float)map.get("longitude");
-        float latitude= (float)map.get("latitude");
-
-        try {
-            stationGeographicalLocationMapper.insert(new StationGeographicalLocation(stationCode,stationType,longitude,latitude));
-        } catch (Exception e) {
-            response.setCode(FAILURE);
-            response.setMessage(e.getMessage());
-            return response;
-        }
-
-        response.setCode(SUCCESS);
-        return response;
-    }
-
-    public UniResponse<Integer> deleteStationOverview(Map<String, Object> map) {
-        UniResponse<Integer> response = new UniResponse<>();
-        int stationCode = (int)map.get("stationCode");
-        String stationName=(String)map.get("stationName");
-        String stationType=(String)map.get("stationType");
-        try {
-            QueryWrapper<StationOverview> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("stationCode", stationCode)
-                    .eq("stationName", stationName)
-                    .eq("stationType", stationType);
-            stationOverviewMapper.delete(queryWrapper);
-        } catch (Exception e) {
-            response.setCode(FAILURE);
-            response.setMessage(e.getMessage());
-            return response;
-        }
-
-        response.setCode(SUCCESS);
         return response;
     }
 }

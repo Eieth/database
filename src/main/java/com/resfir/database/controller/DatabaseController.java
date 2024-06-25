@@ -27,52 +27,36 @@ public class DatabaseController {
         return 1;
     }
 
-    @PostMapping("/StationOverview")
-    public UniResponse<List<StationOverview>> getStationOverview(){
-        return databaseService.getStationOverview();
+    @PostMapping("/EvaporationStation")
+    public UniResponse<List<EvaporationStation>> getEvaporationStation(){
+        return databaseService.getEvaporationStation();
     }
-    @PostMapping("/ElevationInfo")
-    public UniResponse<List<ElevationInfo>> getElevationInfo(){
-        return databaseService.getElevationInfo();
+    @PostMapping("/HistoricalChanges")
+    public UniResponse<List<HistoricalChanges>> getHistoricalChanges(){
+        return databaseService.getHistoricalChanges();
     }
-    @PostMapping("/StationGeographicalLocation")
-    public UniResponse<List<StationGeographicalLocation>> getStationGeographicalLocation(){
-        return databaseService.getStationGeographicalLocation();
+    @PostMapping("/HydrologicalStations")
+    public UniResponse<List<HydrologicalStations>> getHydrologicalStations(){
+        return databaseService.getHydrologicalStations();
     }
-    @PostMapping("/StationAddress")
-    public UniResponse<List<StationAddress>> getStationAddress(){
-        return databaseService.getStationAddress();
+    @PostMapping("/RainfallStations")
+    public UniResponse<List<RainfallStations>> getRainfallStations(){
+        return databaseService.getRainfallStations();
+    }
+    @PostMapping("/SoilMoistureStation")
+    public UniResponse<List<SoilMoistureStation>> getSoilMoistureStation(){
+        return databaseService.getSoilMoistureStation();
     }
     @PostMapping("/StationBasicInfo")
     public UniResponse<List<StationBasicInfo>> getStationBasicInfo(){
         return databaseService.getStationBasicInfo();
     }
-    @PostMapping("/HydrologicalStationCharacteristicValues")
-    public UniResponse<List<HydrologicalStationCharacteristicValues>> getHydrologicalStationCharacteristicValues(){
-        return databaseService.getHydrologicalStationCharacteristicValues();
+    @PostMapping("/WaterLevelStations")
+    public UniResponse<List<WaterLevelStations>> getWaterLevelStations(){
+        return databaseService.getWaterLevelStations();
     }
-    @PostMapping("/WaterLevelStationCharacteristicValues")
-    public UniResponse<List<WaterLevelStationCharacteristicValues>> getWaterLevelStationCharacteristicValues(){
-        return databaseService.getWaterLevelStationCharacteristicValues();
-    }
-    @PostMapping("/RainfallStationCharacteristicValues")
-    public UniResponse<List<RainfallStationCharacteristicValues>> getRainfallStationCharacteristicValues(){
-        return databaseService.getRainfallStationCharacteristicValues();
-    }
-    @PostMapping("/EvaporationStationCharacteristicValues")
-    public UniResponse<List<EvaporationStationCharacteristicValues>> getEvaporationStationCharacteristicValues() {
-        return databaseService.getEvaporationStationCharacteristicValues();
-    }
-    @PostMapping("/insertStationOverview")
-    public UniResponse<Integer> insertStationOverview(Map<String, Object> map) {
-        return databaseService.insertStationOverview(map);
-    }
-    @PostMapping("/insertStationGeographicalLocation")
-    public UniResponse<Integer> insertStationGeographicalLocation(Map<String, Object> map){
-        return databaseService.insertStationGeographicalLocation(map);
-    }
-    @PostMapping("/deleteStationOverview")
-    public UniResponse<Integer> deleteStationOverview(Map<String, Object> map) {
-        return databaseService.deleteStationOverview(map);
+    @PostMapping("/WaterQualityStations")
+    public UniResponse<List<WaterQualityStations>> getWaterQualityStations(){
+        return databaseService.getWaterQualityStations();
     }
 }
