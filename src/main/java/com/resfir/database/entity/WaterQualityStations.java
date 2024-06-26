@@ -10,14 +10,7 @@ public class WaterQualityStations {
     private Integer stationCode;
     private String stationName;
     private String sectionName;
-    private String watershedDistrict;
-    private String drainageSystem;
-    private String river;
-    private String setDate;
     private String primaryZoneName;
     private String secondaryZoneName;
-    private String stationAddress;
-    private String manageUnit;
-    private String longitude;
     private String latitude;
 }

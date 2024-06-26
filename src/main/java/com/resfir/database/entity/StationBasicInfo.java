@@ -10,4 +10,12 @@ public class StationBasicInfo {
     private Integer stationCode;
     private String stationName;
     private int stationFeatureCode;
+    private String watershedDistrict;
+    private String drainageSystem;
+    private String river;
+    private String setDate;
+    private String stationAddress;
+    private String longitude;
+    private String latitude;
+    private String manageUnit;
 }

@@ -9,10 +9,4 @@ public class SoilMoistureStation {
     @TableId(type = IdType.AUTO)
     private Integer stationCode;
     private String stationName;
-    private String watershedDistrict;
-    private String setDate;
-    private String stationAddress;
-    private String manageUnit;
-    private String longitude;
-    private String latitude;
 }

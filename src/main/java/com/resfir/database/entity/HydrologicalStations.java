@@ -9,14 +9,8 @@ public class HydrologicalStations {
     @TableId(type = IdType.AUTO)
     private Integer stationCode;
     private String stationName;
-    private String watershedDistrict;
-    private String drainageSystem;
-    private String river;
-    private int square;
-    private String stationManage;
+    private String stationManagement;
     private String stationFeature;
-    private String setDate;
-    private String stationAddress;
     private String stationClassify;
     private float stationHeight;
     private String baseName;
@@ -28,8 +22,5 @@ public class HydrologicalStations {
     private String actualMaximumFlowTime;
     private float actualMinimalFlowRate;
     private String actualMinimalFlowTime;
-    private String manageUnit;
-    private String longitude;
-    private String latitude;
     private String note;
 }

@@ -10,20 +10,13 @@ public class HistoricalChanges {
     private Integer id;
     private Integer stationCode;
     private String stationName;
-    private String watershedDistrict;
-    private String drainageSystem;
-    private String river;
-    private int square;
+    private String setDate;
+    private String changeDate;
     private String approvalAuthority;
     private int changeSituation;
     private String changeReason;
     private String stationManage;
     private String stationFeature;
-    private String setDate;
-    private String changeDate;
     private String stationAddress;
-    private String manageUnit;
-    private String longitude;
-    private String latitude;
     private String note;
 }

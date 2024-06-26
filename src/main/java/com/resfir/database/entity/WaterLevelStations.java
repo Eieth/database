@@ -9,18 +9,15 @@ public class WaterLevelStations {
     @TableId(type = IdType.AUTO)
     private Integer stationCode;
     private String stationName;
-    private String watershedDistrict;
-    private String drainageSystem;
-    private String river;
-    private int square;
-    private String setDate;
-    private String stationManage;
+    private String stationManagement;
     private String stationFeature;
-    private String stationAddress;
-    private String surveyTeam;
     private String buildUnit;
-    private String manageUnit;
-    private String longitude;
-    private String latitude;
+    private String surveyTeam;
+    private float actualHighestLevel;
+    private String actualHighestTime;
+    private float actualLowestLevel;
+    private String actualLowestTime;
+    private String firstDryTime;
+    private int averageDryDay;
     private String note;
 }
