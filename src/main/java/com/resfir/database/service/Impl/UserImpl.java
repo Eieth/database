@@ -92,7 +92,6 @@ public class UserImpl implements UserService {
 
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("id", managedId).set("password", newPassword);
-        userMapper.update(null, updateWrapper);
 
         return userMapper.update(null, updateWrapper) > 0;
     }
@@ -124,7 +123,6 @@ public class UserImpl implements UserService {
 
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("id", managedId).set("level", newLevel);
-        userMapper.update(null, updateWrapper);
 
         return userMapper.update(null, updateWrapper) > 0;
     }
@@ -132,5 +130,11 @@ public class UserImpl implements UserService {
     public List<User> getUserList() {
 
         return userMapper.selectList(null);
+    }
+
+    public Boolean deleteUser(String token, int posterId, int managedId) {
+        if (isNotSuperAdmin(token, posterId)) return false;
+
+        return userMapper.deleteById(managedId) > 0;
     }
 }

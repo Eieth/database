@@ -1,5 +1,6 @@
 package com.resfir.database.service;
 
+import com.resfir.database.entity.UniResponse;
 import com.resfir.database.entity.User;
 import com.resfir.database.entity.UserResponse;
 
@@ -14,4 +15,6 @@ public interface UserService {
     List<User> getUserList();
 
     int getUserLevelByToken(String token);
+
+    Boolean deleteUser(String token, int posterId, int managedId);
 }

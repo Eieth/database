@@ -13,7 +13,8 @@ import static com.resfir.database.entity.DefaultStatus.FAILURE;
 import static com.resfir.database.entity.DefaultStatus.SUCCESS;
 @Service
 public class DatabaseImpl implements DatabaseService {
-    
+
+    private final DynamicInfoMapper dynamicInfoMapper;
     private final EvaporationStationMapper evaporationStationMapper;
     private final HistoricalChangesMapper historicalChangesMapper;
     private final HydrologicalStationsMapper hydrologicalStationsMapper;
@@ -24,7 +25,8 @@ public class DatabaseImpl implements DatabaseService {
     private final WaterQualityStationsMapper waterQualityStationsMapper;
     private final UserService userService;
 
-    public DatabaseImpl(EvaporationStationMapper evaporationStationMapper, HistoricalChangesMapper historicalChangesMapper, HydrologicalStationsMapper hydrologicalStationsMapper, RainfallStationsMapper rainfallStationsMapper, SoilMoistureStationMapper soilMoistureStationMapper, StationBasicInfoMapper stationBasicInfoMapper, WaterLevelStationsMapper waterLevelStationsMapper, WaterQualityStationsMapper waterQualityStationsMapper, UserService userService) {
+    public DatabaseImpl(DynamicInfoMapper dynamicInfoMapper, EvaporationStationMapper evaporationStationMapper, HistoricalChangesMapper historicalChangesMapper, HydrologicalStationsMapper hydrologicalStationsMapper, RainfallStationsMapper rainfallStationsMapper, SoilMoistureStationMapper soilMoistureStationMapper, StationBasicInfoMapper stationBasicInfoMapper, WaterLevelStationsMapper waterLevelStationsMapper, WaterQualityStationsMapper waterQualityStationsMapper, UserService userService) {
+        this.dynamicInfoMapper = dynamicInfoMapper;
         this.evaporationStationMapper = evaporationStationMapper;
         this.historicalChangesMapper = historicalChangesMapper;
         this.hydrologicalStationsMapper = hydrologicalStationsMapper;
@@ -36,7 +38,17 @@ public class DatabaseImpl implements DatabaseService {
         this.userService = userService;
     }
 
-
+    public UniResponse<List<DynamicInfo>> getDynamicInfo(){
+        UniResponse<List<DynamicInfo>> response = new UniResponse<>();
+        List<DynamicInfo> data = dynamicInfoMapper.selectList(null);
+        if (data == null) {
+            response.setCode(FAILURE);
+        } else {
+            response.setCode(SUCCESS);
+            response.setData(data);
+        }
+        return response;
+    }
     public UniResponse<List<EvaporationStation>> getEvaporationStation(){
         UniResponse<List<EvaporationStation>> response = new UniResponse<>();
         List<EvaporationStation> data = evaporationStationMapper.selectList(null);
@@ -423,6 +435,41 @@ public class DatabaseImpl implements DatabaseService {
         }
         try {
             return getBooleanUniResponse(waterQualityStationsMapper.updateById(waterQualityStations));
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
+    }
+
+    public UniResponse<Boolean> insertDynamicInfo(String token, DynamicInfo dynamicInfo) {
+        if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
+            return UniResponse.with(FAILURE, "用户权限不足");
+        }
+        try {
+            return getBooleanUniResponse(dynamicInfoMapper.insert(dynamicInfo));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
+    }
+
+    public UniResponse<Boolean> deleteDynamicInfo(String token, int stationCode) {
+        if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
+            return UniResponse.with(FAILURE, "用户权限不足");
+        }
+        try {
+            return getBooleanUniResponse(dynamicInfoMapper.deleteById(stationCode));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
+    }
+
+    public UniResponse<Boolean> updateDynamicInfo(String token, DynamicInfo dynamicInfo) {
+        if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
+            return UniResponse.with(FAILURE, "用户权限不足");
+        }
+        try {
+            return getBooleanUniResponse(dynamicInfoMapper.updateById(dynamicInfo));
         } catch (Exception e) {
             return UniResponse.with(FAILURE, e.getMessage());
         }

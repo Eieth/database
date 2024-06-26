@@ -96,4 +96,13 @@ public class UserController {
         }
         return response;
     }
+    @Operation(summary = "删除用户")
+    @PostMapping("/deleteUser")
+    public UniResponse<Boolean> deleteUser(HttpServletRequest request, @RequestBody UserDeleteView view) {
+        UniResponse<Boolean> response = new UniResponse<>();
+        String token = request.getHeader("token");
+        Boolean result = userService.deleteUser(token, view.getPosterId(), view.getManagedId());
+        response.setData(result);
+        return response;
+    }
 }

@@ -21,6 +21,12 @@ public class DatabaseController {
         this.databaseService = databaseService;
     }
 
+    @Operation(summary = "查询DynamicInfo表")
+    @PostMapping("/getDynamicInfo")
+    public UniResponse<List<DynamicInfo>> getDynamicInfo(){
+        return databaseService.getDynamicInfo();
+    }
+
     @Operation(summary = "查询EvaporationStation表")
     @PostMapping("/getEvaporationStation")
     public UniResponse<List<EvaporationStation>> getEvaporationStation(){
@@ -60,6 +66,13 @@ public class DatabaseController {
     @PostMapping("/getWaterQualityStations")
     public UniResponse<List<WaterQualityStations>> getWaterQualityStations(){
         return databaseService.getWaterQualityStations();
+    }
+
+    @Operation(summary = "插入DynamicInfo表")
+    @PostMapping("/insertDynamicInfo")
+    public UniResponse<Boolean> insertDynamicInfo(HttpServletRequest request, @RequestBody DynamicInfo dynamicInfo){
+        String token = request.getHeader("token");
+        return databaseService.insertDynamicInfo(token, dynamicInfo);
     }
 
     @Operation(summary = "插入EvaporationStation表")
@@ -111,6 +124,13 @@ public class DatabaseController {
         return databaseService.insertWaterQualityStations(token, waterQualityStations);
     }
 
+    @Operation(summary = "删除记录在DynamicInfo表")
+    @PostMapping("/deleteDynamicInfo")
+    public UniResponse<Boolean> deleteDynamicInfo(HttpServletRequest request, @RequestBody int stationCode){
+        String token = request.getHeader("token");
+        return databaseService.deleteDynamicInfo(token, stationCode);
+    }
+
     @Operation(summary = "删除记录在EvaporationStation表")
     @PostMapping("/deleteEvaporationStation")
     public UniResponse<Boolean> deleteEvaporationStation(HttpServletRequest request, @RequestBody int stationCode){
@@ -158,6 +178,13 @@ public class DatabaseController {
     public UniResponse<Boolean> deleteWaterQualityStations(HttpServletRequest request, @RequestBody int stationCode){
         String token = request.getHeader("token");
         return databaseService.deleteWaterQualityStations(token, stationCode);
+    }
+
+    @Operation(summary = "更新记录在DynamicInfo表")
+    @PostMapping("/updateDynamicInfo")
+    public UniResponse<Boolean> updateDynamicInfo(HttpServletRequest request, @RequestBody DynamicInfo dynamicInfo){
+        String token = request.getHeader("token");
+        return databaseService.updateDynamicInfo(token, dynamicInfo);
     }
 
     @Operation(summary = "更新记录在EvaporationStation表")

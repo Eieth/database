@@ -1,10 +1,13 @@
 package com.resfir.database.service;
 
 import com.resfir.database.entity.*;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 public interface DatabaseService {
+    UniResponse<List<DynamicInfo>> getDynamicInfo();
     UniResponse<List<EvaporationStation>> getEvaporationStation();
 
     UniResponse<List<HistoricalChanges>> getHistoricalChanges();
@@ -52,4 +55,9 @@ public interface DatabaseService {
     UniResponse<Boolean> insertWaterQualityStations(String token, WaterQualityStations waterQualityStations);
     UniResponse<Boolean> deleteWaterQualityStations(String token, int stationCode);
     UniResponse<Boolean> updateWaterQualityStations(String token, WaterQualityStations waterQualityStations);
+
+
+    UniResponse<Boolean> insertDynamicInfo(String token, DynamicInfo dynamicInfo);
+    UniResponse<Boolean> deleteDynamicInfo(String token, int stationCode);
+    UniResponse<Boolean> updateDynamicInfo(String token, DynamicInfo dynamicInfo);
 }
