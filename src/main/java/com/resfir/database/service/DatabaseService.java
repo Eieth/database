@@ -25,7 +25,7 @@ public interface DatabaseService {
     UniResponse<Boolean> deleteEvaporationStation(String token, int stationCode);
     UniResponse<Boolean> updateEvaporationStation(String token, EvaporationStation evaporationStation);
 
-    UniResponse<Boolean> insertHistoricalChanges(String token, HistoricalChanges historicalChanges);
+    UniResponse<InsertTableResponse> insertHistoricalChanges(String token, HistoricalChanges historicalChanges);
     UniResponse<Boolean> deleteHistoricalChanges(String token, int stationCode);
     UniResponse<Boolean> updateHistoricalChanges(String token, HistoricalChanges historicalChanges);
 

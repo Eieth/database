@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class RainfallStations {
     @TableId(type = IdType.AUTO)
-    private int stationCode;
+    private Integer stationCode;
     private String stationName;
     private String watershedDistrict;
     private String drainageSystem;

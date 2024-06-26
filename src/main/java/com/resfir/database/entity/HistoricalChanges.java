@@ -7,14 +7,15 @@ import lombok.Data;
 @Data
 public class HistoricalChanges {
     @TableId(type = IdType.AUTO)
-    private int stationCode;
+    private Integer id;
+    private Integer stationCode;
     private String stationName;
     private String watershedDistrict;
     private String drainageSystem;
     private String river;
     private int square;
     private String approvalAuthority;
-    private String changeSituation;
+    private int changeSituation;
     private String changeReason;
     private String stationManage;
     private String stationFeature;

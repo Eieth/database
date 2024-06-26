@@ -21,10 +21,6 @@ public class DatabaseController {
         this.databaseService = databaseService;
     }
 
-    @PostMapping("/t")
-    public int t() {
-        return 1;
-    }
     @Operation(summary = "查询EvaporationStation表")
     @PostMapping("/getEvaporationStation")
     public UniResponse<List<EvaporationStation>> getEvaporationStation(){
@@ -74,7 +70,7 @@ public class DatabaseController {
     }
     @Operation(summary = "插入HistoricalChanges表")
     @PostMapping("/insertHistoricalChanges")
-    public UniResponse<Boolean> insertHistoricalChanges(HttpServletRequest request, @RequestBody HistoricalChanges historicalChanges){
+    public UniResponse<InsertTableResponse> insertHistoricalChanges(HttpServletRequest request, @RequestBody HistoricalChanges historicalChanges){
         String token = request.getHeader("token");
         return databaseService.insertHistoricalChanges(token, historicalChanges);
     }

@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class StationBasicInfo {
     @TableId(type = IdType.AUTO)
-    private int stationCode;
+    private Integer stationCode;
     private String stationName;
     private int stationFeatureCode;
 }

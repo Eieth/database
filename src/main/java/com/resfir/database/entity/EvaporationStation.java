@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class EvaporationStation {
-    @TableId(type = IdType.AUTO)
-    private int stationCode;
+    @TableId(type = IdType.INPUT)
+    private Integer stationCode;
     private String stationName;
     private String watershedDistrict;
     private String setDate;

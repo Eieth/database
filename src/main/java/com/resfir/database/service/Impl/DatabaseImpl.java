@@ -147,163 +147,284 @@ public class DatabaseImpl implements DatabaseService {
 
     public UniResponse<Boolean> insertEvaporationStation(String token, EvaporationStation evaporationStation) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(evaporationStationMapper.insert(evaporationStation));
+        try {
+            return getBooleanUniResponse(evaporationStationMapper.insert(evaporationStation));
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> deleteEvaporationStation(String token, int stationCode) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(evaporationStationMapper.deleteById(stationCode));
+        try {
+            return getBooleanUniResponse(evaporationStationMapper.deleteById(stationCode));
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> updateEvaporationStation(String token, EvaporationStation evaporationStation) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(evaporationStationMapper.updateById(evaporationStation));
+        try {
+            return getBooleanUniResponse(evaporationStationMapper.updateById(evaporationStation));
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
-    public UniResponse<Boolean> insertHistoricalChanges(String token, HistoricalChanges historicalChanges) {
+    public UniResponse<InsertTableResponse> insertHistoricalChanges(String token, HistoricalChanges historicalChanges) {
+        System.out.println(historicalChanges);
+
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(historicalChangesMapper.insert(historicalChanges));
+        try {
+            int i = historicalChangesMapper.insert(historicalChanges);
+            if (i != 1) {
+                throw (new Exception("插入失败"));
+            }
+            return UniResponse.with(SUCCESS, "插入成功", new InsertTableResponse(historicalChanges.getId(), true));
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> deleteHistoricalChanges(String token, int stationCode) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(historicalChangesMapper.deleteById(stationCode));
+        try {
+            return getBooleanUniResponse(historicalChangesMapper.deleteById(stationCode));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> updateHistoricalChanges(String token, HistoricalChanges historicalChanges) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(historicalChangesMapper.updateById(historicalChanges));
+        try {
+            return getBooleanUniResponse(historicalChangesMapper.updateById(historicalChanges));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
     public UniResponse<Boolean> insertHydrologicalStations(String token, HydrologicalStations hydrologicalStations) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(hydrologicalStationsMapper.insert(hydrologicalStations));
+        try {
+            return getBooleanUniResponse(hydrologicalStationsMapper.insert(hydrologicalStations));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> deleteHydrologicalStations(String token, int stationCode) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(hydrologicalStationsMapper.deleteById(stationCode));
+        try {
+            return getBooleanUniResponse(hydrologicalStationsMapper.deleteById(stationCode));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> updateHydrologicalStations(String token, HydrologicalStations hydrologicalStations) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(hydrologicalStationsMapper.updateById(hydrologicalStations));
+        try {
+            return getBooleanUniResponse(hydrologicalStationsMapper.updateById(hydrologicalStations));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
     public UniResponse<Boolean> insertRainfallStations(String token, RainfallStations rainfallStations) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(rainfallStationsMapper.insert(rainfallStations));
+        try {
+            return getBooleanUniResponse(rainfallStationsMapper.insert(rainfallStations));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> deleteRainfallStations(String token, int stationCode) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(rainfallStationsMapper.deleteById(stationCode));
+        try {
+            return getBooleanUniResponse(rainfallStationsMapper.deleteById(stationCode));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> updateRainfallStations(String token, RainfallStations rainfallStations) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(rainfallStationsMapper.updateById(rainfallStations));
+        try {
+            return getBooleanUniResponse(rainfallStationsMapper.updateById(rainfallStations));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
     public UniResponse<Boolean> insertSoilMoistureStation(String token, SoilMoistureStation soilMoistureStation) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(soilMoistureStationMapper.insert(soilMoistureStation));
+        try {
+            return getBooleanUniResponse(soilMoistureStationMapper.insert(soilMoistureStation));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> deleteSoilMoistureStation(String token, int stationCode) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(soilMoistureStationMapper.deleteById(stationCode));
+        try {
+            return getBooleanUniResponse(soilMoistureStationMapper.deleteById(stationCode));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> updateSoilMoistureStation(String token, SoilMoistureStation soilMoistureStation) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(soilMoistureStationMapper.updateById(soilMoistureStation));
+        try {
+            return getBooleanUniResponse(soilMoistureStationMapper.updateById(soilMoistureStation));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
     public UniResponse<Boolean> insertStationBasicInfo(String token, StationBasicInfo stationBasicInfo) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(stationBasicInfoMapper.insert(stationBasicInfo));
+        try {
+            return getBooleanUniResponse(stationBasicInfoMapper.insert(stationBasicInfo));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> deleteStationBasicInfo(String token, int stationCode) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(stationBasicInfoMapper.deleteById(stationCode));
+        try {
+            return getBooleanUniResponse(stationBasicInfoMapper.deleteById(stationCode));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> updateStationBasicInfo(String token, StationBasicInfo stationBasicInfo) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(stationBasicInfoMapper.updateById(stationBasicInfo));
+        try {
+            return getBooleanUniResponse(stationBasicInfoMapper.updateById(stationBasicInfo));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
     public UniResponse<Boolean> insertWaterLevelStations(String token, WaterLevelStations waterLevelStations) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(waterLevelStationsMapper.insert(waterLevelStations));
+        try {
+            return getBooleanUniResponse(waterLevelStationsMapper.insert(waterLevelStations));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> deleteWaterLevelStations(String token, int stationCode) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(waterLevelStationsMapper.deleteById(stationCode));
+        try {
+            return getBooleanUniResponse(waterLevelStationsMapper.deleteById(stationCode));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> updateWaterLevelStations(String token, WaterLevelStations waterLevelStations) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(waterLevelStationsMapper.updateById(waterLevelStations));
+        try {
+            return getBooleanUniResponse(waterLevelStationsMapper.updateById(waterLevelStations));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
     public UniResponse<Boolean> insertWaterQualityStations(String token, WaterQualityStations waterQualityStations) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(waterQualityStationsMapper.insert(waterQualityStations));
+        try {
+            return getBooleanUniResponse(waterQualityStationsMapper.insert(waterQualityStations));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> deleteWaterQualityStations(String token, int stationCode) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(waterQualityStationsMapper.deleteById(stationCode));
+        try {
+            return getBooleanUniResponse(waterQualityStationsMapper.deleteById(stationCode));
+
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 
     public UniResponse<Boolean> updateWaterQualityStations(String token, WaterQualityStations waterQualityStations) {
         if (userService.getUserLevelByToken(token) == Level.DEFAULT.getCode()) {
-            return UniResponse.with(FAILURE);
+            return UniResponse.with(FAILURE, "用户权限不足");
         }
-        return getBooleanUniResponse(waterQualityStationsMapper.updateById(waterQualityStations));
+        try {
+            return getBooleanUniResponse(waterQualityStationsMapper.updateById(waterQualityStations));
+        } catch (Exception e) {
+            return UniResponse.with(FAILURE, e.getMessage());
+        }
     }
 }

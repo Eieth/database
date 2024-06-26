@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 @TableName("userinfo")
 public class User {
     @TableId(type = IdType.AUTO)
-    private int id;
+    private Integer id;
     private String username;
     private String password;
     private int level;
