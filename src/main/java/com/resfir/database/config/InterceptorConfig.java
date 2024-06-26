@@ -17,7 +17,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .addPathPatterns("/api/user/setLevel")
                 .excludePathPatterns("/api/user/signup")
                 .excludePathPatterns("/api/user/login")
-                .excludePathPatterns("/api/user/getUsers");
+                .addPathPatterns("/api/user/getUsers");
     }
 
     @Bean

@@ -15,8 +15,7 @@ public class HistoricalChanges {
     private String approvalAuthority;
     private int changeSituation;
     private String changeReason;
-    private String stationManage;
+    private String stationManagement;
     private String stationFeature;
-    private String stationAddress;
     private String note;
 }

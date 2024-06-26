@@ -12,5 +12,4 @@ public class WaterQualityStations {
     private String sectionName;
     private String primaryZoneName;
     private String secondaryZoneName;
-    private String latitude;
 }

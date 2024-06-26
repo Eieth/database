@@ -19,8 +19,8 @@ public class HydrologicalStations {
     private String buildUnit;
     private float averageFlowRate;
     private float actualMaximumFlowRate;
-    private String actualMaximumFlowTime;
+    private String actualMaximumFlowRateTime;
     private float actualMinimalFlowRate;
-    private String actualMinimalFlowTime;
+    private String actualMinimalFlowRateTime;
     private String note;
 }
