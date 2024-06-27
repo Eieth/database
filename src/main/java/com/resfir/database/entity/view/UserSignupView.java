@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class UserSignupView extends UserLoginView {
-    private String password_rep;
+    private String passwordRep;
 }

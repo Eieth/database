@@ -46,8 +46,8 @@ public class UserController {
         UniResponse<UserResponse> response = new UniResponse<>();
         String username = userSignupView.getUsername();
         String password = userSignupView.getPassword();
-        String password_rep = userSignupView.getPassword_rep();
-        if (!password.equals(password_rep)) {
+        String passwordRep = userSignupView.getPasswordRep();
+        if (!password.equals(passwordRep)) {
             response.setCode(FAILURE);
             response.setMessage("密码不一致");
             return response;
