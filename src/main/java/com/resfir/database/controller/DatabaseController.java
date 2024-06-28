@@ -126,58 +126,58 @@ public class DatabaseController {
 
     @Operation(summary = "删除记录在DynamicInfo表")
     @PostMapping("/deleteDynamicInfo")
-    public UniResponse<Boolean> deleteDynamicInfo(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteDynamicInfo(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteDynamicInfo(token, stationCode);
+        return databaseService.deleteDynamicInfo(token, stationCode.getStationCode());
     }
 
     @Operation(summary = "删除记录在EvaporationStation表")
     @PostMapping("/deleteEvaporationStation")
-    public UniResponse<Boolean> deleteEvaporationStation(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteEvaporationStation(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteEvaporationStation(token, stationCode);
+        return databaseService.deleteEvaporationStation(token, stationCode.getStationCode());
     }
     @Operation(summary = "删除记录在HistoricalChanges表")
     @PostMapping("/deleteHistoricalChanges")
-    public UniResponse<Boolean> deleteHistoricalChanges(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteHistoricalChanges(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteHistoricalChanges(token, stationCode);
+        return databaseService.deleteHistoricalChanges(token, stationCode.getStationCode());
     }
     @Operation(summary = "删除记录在HydrologicalStations表")
     @PostMapping("/deleteHydrologicalStations")
-    public UniResponse<Boolean> deleteHydrologicalStations(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteHydrologicalStations(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteHydrologicalStations(token, stationCode);
+        return databaseService.deleteHydrologicalStations(token, stationCode.getStationCode());
     }
     @Operation(summary = "删除记录在RainfallStations表")
     @PostMapping("/deleteRainfallStations")
-    public UniResponse<Boolean> deleteRainfallStations(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteRainfallStations(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteRainfallStations(token, stationCode);
+        return databaseService.deleteRainfallStations(token, stationCode.getStationCode());
     }
     @Operation(summary = "删除记录在SoilMoistureStation表")
     @PostMapping("/deleteSoilMoistureStation")
-    public UniResponse<Boolean> deleteSoilMoistureStation(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteSoilMoistureStation(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteSoilMoistureStation(token, stationCode);
+        return databaseService.deleteSoilMoistureStation(token, stationCode.getStationCode());
     }
     @Operation(summary = "删除记录在StationBasicInfo表")
     @PostMapping("/deleteStationBasicInfo")
-    public UniResponse<Boolean> deleteStationBasicInfo(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteStationBasicInfo(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteStationBasicInfo(token, stationCode);
+        return databaseService.deleteStationBasicInfo(token, stationCode.getStationCode());
     }
     @Operation(summary = "删除记录在WaterLevelStations表")
     @PostMapping("/deleteWaterLevelStations")
-    public UniResponse<Boolean> deleteWaterLevelStations(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteWaterLevelStations(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteWaterLevelStations(token, stationCode);
+        return databaseService.deleteWaterLevelStations(token, stationCode.getStationCode());
     }
     @Operation(summary = "删除记录在WaterQualityStations表")
     @PostMapping("/deleteWaterQualityStations")
-    public UniResponse<Boolean> deleteWaterQualityStations(HttpServletRequest request, @RequestBody int stationCode){
+    public UniResponse<Boolean> deleteWaterQualityStations(HttpServletRequest request, @RequestBody StationCode stationCode){
         String token = request.getHeader("token");
-        return databaseService.deleteWaterQualityStations(token, stationCode);
+        return databaseService.deleteWaterQualityStations(token, stationCode.getStationCode());
     }
 
     @Operation(summary = "更新记录在DynamicInfo表")
